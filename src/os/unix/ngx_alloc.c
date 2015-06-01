@@ -31,6 +31,7 @@ ngx_alloc(size_t size, ngx_log_t *log)
 }
 
 
+// 分配内存并初始化为0，相当于calloc
 void *
 ngx_calloc(size_t size, ngx_log_t *log)
 {

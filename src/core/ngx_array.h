@@ -14,11 +14,11 @@
 
 
 typedef struct {
-    void        *elts;
-    ngx_uint_t   nelts;
-    size_t       size;
-    ngx_uint_t   nalloc;
-    ngx_pool_t  *pool;
+    void        *elts; // 数组起始地址
+    ngx_uint_t   nelts; // 已存元素个数
+    size_t       size;  // 每个元素大小（字节）
+    ngx_uint_t   nalloc; // 分配的个数
+    ngx_pool_t  *pool; // 内存池地址
 } ngx_array_t;
 
 
@@ -36,11 +36,13 @@ ngx_array_init(ngx_array_t *array, ngx_pool_t *pool, ngx_uint_t n, size_t size)
      * that "array->nelts" may be used without having been initialized
      */
 
+    // 初始化数据控制结构
     array->nelts = 0;
     array->size = size;
     array->nalloc = n;
     array->pool = pool;
 
+    // 分配数组空间
     array->elts = ngx_palloc(pool, n * size);
     if (array->elts == NULL) {
         return NGX_ERROR;

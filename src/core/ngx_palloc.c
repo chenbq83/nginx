@@ -115,7 +115,7 @@ ngx_reset_pool(ngx_pool_t *pool)
     pool->large = NULL;
 }
 
-
+// 从内存池申请内存，需要考虑空间是否满足
 void *
 ngx_palloc(ngx_pool_t *pool, size_t size)
 {
